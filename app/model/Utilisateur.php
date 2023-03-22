@@ -4,7 +4,7 @@ namespace app\model;
 use app\utils\bddConnect;
 use app\model\Roles;
 
-    class Utilisateur{
+    class Utilisateur extends bddConnect{
 
         /************************************
                     Attributs

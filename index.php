@@ -11,6 +11,7 @@
             break;
         case '/ChocoProj/addUser':
             include './app/vue/viewAddUser.php';
+            break;
         default:
             include './app/vue/error.php';
             break;
