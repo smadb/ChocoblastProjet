@@ -1,7 +1,7 @@
 <?php 
 
 namespace app\model;
-use app\utils\bddConnect;
+use app\utils\BddConnect;
 
     class Chocoblast extends bddConnect {
         

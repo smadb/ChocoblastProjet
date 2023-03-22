@@ -1,9 +1,9 @@
 <?php 
 
 namespace app\model;
-use app\utils\bddConnect;
+use app\utils\BddConnect;
 
-    class Roles extends bddConnect {
+    class Roles extends BddConnect {
         
         /************************************
                     Attributs
@@ -13,9 +13,9 @@ use app\utils\bddConnect;
         /************************************
                     Constructeur
         ***********************************/
-        public function __construct($name){
-            $this->id_role=1;
-            $this->name_roles=$name;
+        public function __construct(/*$name*/){
+            // $this->id_role=1;
+            // $this->name_roles=$name;
         }
         /************************************
                     Get / Set
@@ -29,6 +29,27 @@ use app\utils\bddConnect;
 
         public function setNomRoles($name){
             $this->name_roles=$name;
+        }
+
+        /************************************
+                    Méthodes
+        ***********************************/
+
+        public function addRoles():void{
+
+            try{
+
+                $nom = $this->name_roles;
+
+                $req = $this->connexion()->prepare('INSERT INTO roles (nom_roles) VALUES (?)');
+
+                $req -> bindParam(1,$nom,\PDO::PARAM_STR);
+
+                $req -> execute();
+            }
+            catch (\Exception $e){
+                die('Erreur : '.$e->getMessage());
+            }
         }
     }
 

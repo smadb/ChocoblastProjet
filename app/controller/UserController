@@ -1,0 +1,57 @@
+<?php 
+
+namespace app\controller;
+use app\model\Utilisateur;
+use app\utils\Fonctions;
+
+class UserController extends Utilisateur{
+
+    //fonction qui gere l'ajout d'un utilisateur en bdd
+    public function insertUser(){
+        //variable pour message d'erreur
+        $msg='';
+        //logique
+        if (isset($_POST['submit'])){
+
+            // clean les données recup avec la fonction de la page fonctions
+            $nom=Fonctions::cleanInput($_POST['nom_utilisateur']);
+            $prenom=Fonctions::cleanInput($_POST['prenom_utilisateur']);
+            $mail=Fonctions::cleanInput($_POST['mail_utilisateur']);
+            $mdp=Fonctions::cleanInput($_POST['password_utilisateur']);
+
+            //tester si les champs sont remplis
+            if (!empty($nom) && !empty($prenom) && !empty($mail) && !empty($mdp)){
+
+                $user = new Utilisateur();
+                //recup le mail dans un obj
+                $user->setMailUtil($mail);
+                //tester si le compte existe
+                if($user->getUserByMail()){
+                    $msg='Les infos sont incorrectes';
+                }
+                else{
+                    $mdp = password_hash($mdp,PASSWORD_DEFAULT);
+                    $user->setNomUtil($nom);
+                    $user->setPrenomUtil($prenom);
+                    $user->setMdpUtil($mdp);
+
+                $user -> addUser();
+                echo $msg = '<script>alert(Le compte'.$mail.'a été ajouté !)</script>'; 
+                }
+
+                
+            }
+            else{
+
+                echo $msg='<script> alert(Veuillez remplir les champs !)</script>';
+                
+            }
+        }
+        //importer la vue
+        include './app/vue/viewAddUser.php';
+    }
+}
+
+
+
+?>

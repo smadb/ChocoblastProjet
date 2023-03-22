@@ -7,7 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>ERREUR</h1>
-    <?php phpinfo(); ?>
+    <form action="" method="POST">
+        <label for="nom_roles">Ajouter un role</label>
+        <input type="text" name="nom_roles">
+        <input type="submit" name="submit" value="Ajouter">
+    </form>
 </body>
 </html>
