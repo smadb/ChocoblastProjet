@@ -15,13 +15,22 @@ class RolesController extends Roles{
             if (!empty($nom)){
                 $roles = new Roles();
                 $roles -> setNomRoles($nom);
-                $roles->addRoles();
-                echo '<script>alert(Le role'.$nom.'a été ajouté !)</script>';
+                if($this->getRolesByName()){
+                    $msg = "Le role : ".$nom." existe déja en BDD";
+                }
+                //Test si il n'existe pas 
+                else{
+                    //Ajouter en BDD le nouveau role
+                    $roles->addRoles();
+                    //Afficher la confirmation
+                    $msg = "Le role : ".$nom." à été ajouté en BDD";
+                }
             }
         }
-        else {
-            echo '<script>alert(Remplir le champs role !)</script>';
-        }
+            else {
+                $msg = "Veuillez remplir les champs de formulaire";        
+            }
+
         include './app/vue/viewAddRoles.php';
     }
 }

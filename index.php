@@ -1,11 +1,14 @@
 <?php
+    //demarrage session
+    session_start();
+    
     use app\controller\UserController;
     use app\controller\RolesController;
 
     include './app/utils/BddConnect.php';
     include './app/utils/Fonctions.php';
     include './app/model/Utilisateur.php';
-    include './app/controller/userController';
+    include './app/controller/UserController.php';
     include './app/model/Roles.php';
     include './app/controller/RolesController.php';
 
@@ -24,11 +27,14 @@
         case '/ChocoProj/':
             include './app/vue/home.php';
             break;
-        case '/ChocoProj/addUser':
+        case '/ChocoProj/userAdd':
             $UserController->insertUser();
             break;
-        case '/ChocoProj/addRoles':
+        case '/ChocoProj/rolesAdd':
             $RolesController->insertRoles();
+            break;
+        case '/ChocoProj/connexion':
+            $UserController->connexionUser();
             break;
         default:
             include './app/vue/error.php';

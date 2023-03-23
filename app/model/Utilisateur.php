@@ -15,14 +15,17 @@ use Exception;
         private ?string $surname_user;
         private ?string $mail_user;
         private ?string $password_user;
-        private $image_user;
-        private $status_user;
-        private $roles;
+        private ?string $image_user;
+        private ?bool $status_user;
+        private ?Roles $roles;
         /************************************
                     Constructeur
         ***********************************/
         public function __construct(){
-            // $this->roles = new Roles('user');
+            //instancier un objet role quand on créé un
+            $this->roles = new Roles();
+            //$this->roles->setNomRoles('user');
+            $this->roles->setIdRole(2);        
         }
         /************************************
                     Get / Set
@@ -67,13 +70,16 @@ use Exception;
                 $prenom=$this->surname_user;
                 $mail=$this->mail_user;
                 $mdp=$this->password_user;
+                $id = $this->roles->getIdRole();
+
                 //preparer la requete
-                $req = $this->connexion()->prepare('INSERT INTO utilisateur(nom_utilisateur,prenom_utilisateur,mail_utilisateur,password_utilisateur) VALUES (?,?,?,?)');
+                $req = $this->connexion()->prepare('INSERT INTO utilisateur(nom_utilisateur,prenom_utilisateur,mail_utilisateur,password_utilisateur,id_roles) VALUES (?,?,?,?,?)');
                 //bind les parametres
                 $req->bindParam(1,$nom,\PDO::PARAM_STR);
                 $req->bindParam(2,$prenom,\PDO::PARAM_STR);
                 $req->bindParam(3,$mail,\PDO::PARAM_STR);
                 $req->bindParam(4,$mdp,\PDO::PARAM_STR);
+                $req->bindParam(5,$id,\PDO::PARAM_INT);
                 //executer la requete
                 $req->execute();
             }
@@ -86,7 +92,7 @@ use Exception;
             $mail = $this->mail_user;
             
             try{
-                $req = $this->connexion()->prepare('SELECT id_utilisateur,nom_utilisateur,prenom_utilisateur,mail_utilisateur,image_utilisateur,statut_utilisateur,id_roles FROM utilisateur WHERE mail_utilisateur = ?');
+                $req = $this->connexion()->prepare('SELECT id_utilisateur,nom_utilisateur,prenom_utilisateur,mail_utilisateur,password_utilisateur,image_utilisateur,statut_utilisateur,id_roles FROM utilisateur WHERE mail_utilisateur = ?');
                 $req -> bindParam(1,$mail,\PDO::PARAM_STR);
                 $req->execute();
                 $data = $req->fetchAll(\PDO::FETCH_OBJ);
