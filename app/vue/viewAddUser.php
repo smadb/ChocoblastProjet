@@ -15,16 +15,17 @@
     <h1>Inscription</h1>
 
     <form action="" method ="post">
-        <label for="nom_utilisateur">Quel est ton nom ?</label>
+
+        <label class= "textform" for="nom_utilisateur">Quel est ton nom ?</label>
         <input type="text" name="nom_utilisateur">
 
-        <label for="prenom_utilisateur">quel est ton prénom ?</label>
+        <label class= "textform" for="prenom_utilisateur">quel est ton prénom ?</label>
         <input type="text" name="prenom_utilisateur">
 
-        <label for="mail_utilisateur">quel est ton e-mail ?</label>
+        <label class= "textform" for="mail_utilisateur">quel est ton e-mail ?</label>
         <input type="mail" name="mail_utilisateur">
 
-        <label for="password_utilisateur">choisis un mot de passe !</label>
+        <label class= "textform" for="password_utilisateur">choisis un mot de passe !</label>
         <input type="password" name="password_utilisateur">
 
         <input type="submit" value="Ajouter" name="submit">

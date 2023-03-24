@@ -32,7 +32,7 @@ use app\utils\BddConnect;
         public function setNomRoles($name){
             $this->name_roles=$name;
         }
-
+        
         /************************************
                     Méthodes
         ***********************************/
@@ -70,8 +70,13 @@ use app\utils\BddConnect;
                 die('Erreur : '.$e->getMessage());
             }
         }
-    }
 
+         public function __toString()
+                {
+                    return $this->name_roles;
+                }
+    }
+       
 
 
 ?>

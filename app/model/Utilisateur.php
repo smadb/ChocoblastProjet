@@ -10,7 +10,7 @@ use Exception;
         /************************************
                     Attributs
         ***********************************/
-        private ?int $id_utilisateur;
+        private ?int $id_user;
         private ?string $name_user;
         private ?string $surname_user;
         private ?string $mail_user;
@@ -30,8 +30,8 @@ use Exception;
         /************************************
                     Get / Set
         ***********************************/
-        public function getIdUtil(){
-            return $this->id_utilisateur;
+        public function getIdUtil():?int{
+            return $this->id_user;
         }
         public function getNomUtil():?string{
             return $this->name_user;
@@ -58,6 +58,10 @@ use Exception;
         public function setMdpUtil($password):void{
             $this->password_user=$password;
         }
+        public function setIdUtil($id):void{
+            $this->id_user=$id;
+        }
+        
 
         /********************************************
          METHODES
@@ -104,7 +108,23 @@ use Exception;
             }
         }
 
+        public function __toString()
+        {
+            return $this->name_user;
+        }
         
+        public function getUserAll(){
+            try{
+                $req = $this->connexion()->prepare('SELECT id_utilisateur,nom_utilisateur,prenom_utilisateur,mail_utilisateur,image_utilisateur FROM utilisateur ');
+                $req->execute();
+                $data = $req->fetchAll(\PDO::FETCH_OBJ);
+
+                return $data;
+            }
+            catch(Exception $e){
+                die();
+            }
+        }
 
     }
 

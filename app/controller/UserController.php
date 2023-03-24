@@ -6,7 +6,6 @@ use app\utils\Fonctions;
 
 class UserController extends Utilisateur{
 
-    //fonction qui gere l'ajout d'un utilisateur en bdd
     public function insertUser(){
         //variable pour message d'erreur
         $msg='';
@@ -50,9 +49,6 @@ class UserController extends Utilisateur{
         //importer la vue
         include './app/vue/viewAddUser.php';
     }
-
-
-
     public function connexionUser(){
         $msg='';
         if(isset($_POST['submit'])){
@@ -75,6 +71,7 @@ class UserController extends Utilisateur{
                         $_SESSION['id'] = $data[0]->id_utilisateur;
                         $_SESSION['nom']= $data[0]->nom_utilisateur;
                         $_SESSION['prenom']= $data[0]->prenom_utilisateur;
+                        header('location: ./');
                         $msg='';
 
                     }
@@ -97,8 +94,12 @@ class UserController extends Utilisateur{
         
         include './app/vue/viewConnexion.php';
     }
+    public function decoUser(){
+        session_destroy();
+        header('location: ./');
+    }
 }
-
+    
 
 
 ?>
