@@ -10,7 +10,7 @@ body{
     width: 100vw;
     height: 10vh;
     justify-content: space-between;
-    background-color: rgb(70, 70, 70);
+    background-color: rgb(160, 47, 47);
 }
 li>a{
     font-size: 1.5em;
@@ -37,8 +37,21 @@ input, label, h3, select{
 .textform{
     text-align: center;
 }
-
+.placeCards{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
 .chocoblastCard{
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    border-radius: 4%;
+    padding: 4px;
     font-size: large;
-    margin: 3em;
+    margin: 2em;
+    width:fit-content;
+    height: fit-content;
+    
 }

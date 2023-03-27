@@ -94,7 +94,12 @@ class UserController extends Utilisateur{
         
         include './app/vue/viewConnexion.php';
     }
+
+    public function confirmDeco(){
+        echo " <a onclick=\"return confirm('Vous souhaitez quitter votre session ?');\" href='deconnexion.php'> Deconnexion</a>";
+    }
     public function decoUser(){
+        
         session_destroy();
         header('location: ./');
     }

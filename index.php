@@ -6,6 +6,7 @@
     use app\controller\UserController;
     use app\controller\RolesController;
     use app\controller\ChocoblastController;
+    use app\controller\CommentaireController;
 
     include './app/utils/BddConnect.php';
     include './app/utils/Fonctions.php';
@@ -15,6 +16,8 @@
     include './app/controller/RolesController.php';
     include './app/model/Chocoblast.php';
     include './app/controller/ChocoblastController.php';
+    include './app/model/Commentaire.php';
+    include './app/controller/CommentaireController.php';
 
     //Analyse de l'URL avec parse_url() et retourne ses composants
     $url = parse_url($_SERVER['REQUEST_URI']);
@@ -25,6 +28,7 @@
     $UserController=new UserController();
     $RolesController=new RolesController();
     $ChocoblastController=new ChocoblastController();
+    $CommentaireController = new CommentaireController();
 
     switch ($path) {
         case '/ChocoProj/':
@@ -47,6 +51,9 @@
             break;
         case '/ChocoProj/chocoblastShow':
             $ChocoblastController->showCoblast();
+            break;
+        case '/ChocoProj/commentAdd':
+            $CommentaireController->insertComment();
             break;
         default:
             include './app/vue/error.php';

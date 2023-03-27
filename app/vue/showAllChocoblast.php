@@ -11,11 +11,12 @@
 <body>
 
 <?php include './app/vue/viewMenu.php'?>
-<div>
+<div class="placeCards">
+
 
     <?php 
     foreach($data as $value){
-            echo '<div class ="chocoblastCard">Nom Prénom CIBLE : '.$value->nom_cible.' '.$value->prenom_cible.' </br>Nom Prénom AUTEUR : '.$value->nom_auteur.' '.$value->prenom_auteur.'</br>Date : '.$value->date_chocoblast.'</br>"'.$value->slogan_chocoblast.'"</div>';
+            echo '<div class ="chocoblastCard"><b>Nom Prénom CIBLE : </b>'.$value->nom_cible.' '.$value->prenom_cible.' </br><b>Nom Prénom AUTEUR : </b>'.$value->nom_auteur.' '.$value->prenom_auteur.'</br><b>Date : </b>'.$value->date_chocoblast.'</br><i>"'.$value->slogan_chocoblast.'"</i></div>';
         }
     ?>
 </div>

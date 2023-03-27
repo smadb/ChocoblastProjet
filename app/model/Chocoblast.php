@@ -42,7 +42,7 @@ use Exception;
         public function getAuteur(){
             return $this->auteur_chocoblast;
         }
-        public function getId(){
+        public function getIdChocoblast(){
             return $this->id_chocoblast;
         }
         public function getStatut(){
@@ -97,11 +97,27 @@ use Exception;
              }
         }
 
+        // public function getAllChocoblast(int $filter){
+        //     $requete = '';
+        //     if ($filter==1){
+
+        //     }
+        //     elseif ($filter==2){
+
+        //     }
+        //     elseif($filter ==3){
+
+        //     }
+        //     else{
+
+        //     }
+        // }
+
         public function getChocoblastAll(){
             try{
                 
                 $req = $this->connexion()->prepare('SELECT id_chocoblast, slogan_chocoblast, date_chocoblast,  nom_auteur, prenom_auteur, nom_cible, prenom_cible FROM chocoblast INNER JOIN vwCible ON cible_chocoblast = vwcible.id_cible 
-                INNER JOIN vwAuteur ON auteur_chocoblast = vwauteur.id_auteur');
+                INNER JOIN vwAuteur ON auteur_chocoblast = vwauteur.id_auteur ORDER BY date_chocoblast');
                 
                 $req->execute();
                 $data = $req->fetchAll(\PDO::FETCH_OBJ);

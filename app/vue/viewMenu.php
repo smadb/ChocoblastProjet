@@ -21,7 +21,7 @@ else{
     <!-- <li><a href="./rolesAdd">Ajouter Role</a></li> -->
     <li><a href="./chocoblastAdd">Ajouter Chocoblast</a></li>
     <li><a href="./chocoblastShow">Voir tout les Chocoblast</a></li>
-    <li><a href="./deconnexion">Deconnexion</a></li>
+    <li><a onclick="return confirm('Vous souhaitez quitter votre session ?')"href="./deconnexion">Deconnexion</a></li>
 
 
 </div>
